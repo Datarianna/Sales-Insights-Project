@@ -1,1 +1,1 @@
-# Sales-Insights-Project
+# Sales Insights Project
