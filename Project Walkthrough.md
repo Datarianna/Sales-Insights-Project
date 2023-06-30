@@ -55,8 +55,8 @@ The objective of this project is to create a dashboard that provides visual insi
 # Data Cleaning
 ### 💲 Cleaning Transaction Sales Dataset
 
-`ts = pd.read_csv('transaction_sales.csv') 
-print(ts.head())`
+`ts = pd.read_csv('transaction_sales.csv')`
+`print(ts.head())`
 
 
 
