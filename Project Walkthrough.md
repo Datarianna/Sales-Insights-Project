@@ -10,7 +10,7 @@ AtliQ is unable to track sales accurately and gather proper insight of their per
 The objective of this project is to create a dashboard that provides visual insights on the company's performance that will help managers and stakeholders make better informed decisions based on data.
 
 ### Software Used
-- Python (Pandas
+- Python (Pandas)
 - SQL
 - Tableau
 
@@ -54,11 +54,9 @@ The objective of this project is to create a dashboard that provides visual insi
 
 # Data Cleaning
 ### 💲 Cleaning Transaction Sales Dataset
-`# Printing the first five records
-ts = pd.read_csv('transaction_sales.csv')
 
+`ts = pd.read_csv('transaction_sales.csv') 
 print(ts.head())`
-
 
 
 
