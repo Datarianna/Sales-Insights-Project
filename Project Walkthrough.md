@@ -59,7 +59,6 @@ The objective of this project is to create a dashboard that provides visual insi
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
-1000 rows x 7 columns
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|
 |    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   |
@@ -78,17 +77,19 @@ print(ts.head())
 ```
 ts = ts.dropna()
 ts = ts.drop(ts[(ts['sales_amount']==-1) | (ts['sales_amount']==0)].index)
-
-ts['currency'].str.rstrip("\r")
-ts['norm_sales_amount'] = None
-ts.loc[ts['currency'] == 'INR', 'norm_sales_amount'] = ts.loc[ts['currency'] == 'INR', 'sales_amount']
+ts = ts.replace('INR\r','INR').replace('USD\r','USD')
+ts['norm_sales_amount'] = ts['sales_amount']
 ts.loc[ts['currency'] == 'USD','norm_sales_amount'] = ts.loc[ts['currency'] == 'USD','sales_amount']*82
 ts['order_date'] = pd.to_datetime(ts['order_date'], dayfirst=False)
 
+print('')
+duplicate(ts)
 missing(ts)
+
+print('\nCleaned Dataset:')
+print(ts.head())
 ts.to_csv('clean_transaction_sales.csv', index=False)
 ```
-991 rows x columns
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency | norm_sales_amount |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|-------------------|
 |    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   | 41241 |
@@ -99,12 +100,17 @@ ts.to_csv('clean_transaction_sales.csv', index=False)
 
 ### 🌍 Cleaning Markets Dataset
 ```
+print('Market')
+print('\nOriginal Dataset:')
 m = pd.read_csv('markets.csv')
 
+print('Top 5 rows')
 print(m.head())
+print('Bottom 5 rows')
 print(m.tail())
 ```
-Top 5 rows:
+
+Top 5 rows
 | markets_code | markets_name | zone |
 |--------------|--------------|------|
 |Mark001 |	Chennai |	South |
@@ -113,7 +119,7 @@ Mark003	| Ahmedabad |	North |
 Mark004	| Delhi NCR |	North |
 Mark005	| Kanpur |	North |
 
-Bottom 5 rows:
+Bottom 5 rows
 | markets_code | markets_name | zone |
 |--------------|--------------|------|
 | Mark013 |	Bhopal |	Central |
@@ -128,17 +134,18 @@ Bottom 5 rows:
 3. Used duplicated() to check for any row that is a duplicated.
 4. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```
-m = m.dropna()
-m = m.rename(columns={'markets_code':'market_code'})
-#print(m.duplicated().to_string())
-
-print(m.head())
-print(m.tail())
-
+print('')
+duplicate(ts)
 missing(m)
+
+print('\nCleaned Dataset:')
+print('Top 5 rows')
+print(m.head())
+print('Bottom 5 rows')
+print(m.tail())
 m.to_csv('clean_markets.csv', index=False)
 ```
-Top 5 rows:
+Top 5 rows
 | market_code | markets_name | zone |
 |--------------|--------------|------|
 |Mark001 |	Chennai |	South |
@@ -147,7 +154,7 @@ Mark003	| Ahmedabad |	North |
 Mark004	| Delhi NCR |	North |
 Mark005	| Kanpur |	North |
 
-Bottom 5 rows:
+Bottom 5 rows
 | market_code | markets_name | zone |
 |--------------|--------------|------|
 | Mark011	| Nagpur |	Central |
@@ -155,3 +162,4 @@ Bottom 5 rows:
 | Mark013	| Bhopal	| Central |
 | Mark014	| Hyderabad	| South |
 | Mark015	| Bhubaneshwar |	South |
+
