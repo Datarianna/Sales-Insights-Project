@@ -59,6 +59,7 @@ The objective of this project is to create a dashboard that provides visual insi
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
+1000 rows x 7 columns
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|
 |    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   |
@@ -66,6 +67,7 @@ print(ts.head())
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |      875     |	  INR   |
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   |
 |    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   |
+
 
 1. I first utilized .dropna() to remove any rows that contained null values. Examining the dataset
 2. I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
@@ -86,6 +88,7 @@ ts['order_date'] = pd.to_datetime(ts['order_date'], dayfirst=False)
 missing(ts)
 ts.to_csv('clean_transaction_sales.csv', index=False)
 ```
+991 rows x columns
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency | norm_sales_amount |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|-------------------|
 |    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   | 41241 |
@@ -93,3 +96,17 @@ ts.to_csv('clean_transaction_sales.csv', index=False)
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   | 583 |
 |    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   | 7176
 |    Prod003   |    Cus005     |	 Mark004   | 2017-11-20 |	   59     |      500     |	  USD   | 41000 |
+
+### 🌍 Cleaning Markets Dataset
+```
+m = pd.read_csv('markets.csv')
+
+print(m.head())
+```
+| markets_code | markets_name | zone |
+|--------------|--------------|------|
+|Mark001 |	Chennai |	South |
+Mark002	| Mumbai |	Central |
+Mark003	| Ahmedabad |	North |
+Mark004	| Delhi NCR |	North |
+Mark005	| Kanpur |	North |
