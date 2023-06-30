@@ -59,7 +59,15 @@ The objective of this project is to create a dashboard that provides visual insi
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
+| product_code | customer_code	market_code	order_date	sales_qty	sales_amount	currency
+Prod001	Cus001	Mark001	10/10/2017	100	41241	INR
+Prod001	Cus002	Mark002	5/8/2018	3	-1	INR
+Prod002	Cus003	Mark003	4/6/2018	1	875	INR
+Prod002	Cus003	Mark003	4/11/2018	1	583	INR
+Prod002	Cus004	Mark003	6/18/2018	6	7176	INR
 
-
-
+| Column 1 | Column 2 | Column 3 |
+|----------|----------|----------|
+|   Cell   |   Cell   |   Cell   |
+|   Cell   |   Cell   |   Cell   |
 
