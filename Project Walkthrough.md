@@ -59,18 +59,37 @@ The objective of this project is to create a dashboard that provides visual insi
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
-| product_code | customer_code	market_code	order_date	sales_qty	sales_amount	currency
-Prod001	Cus001	Mark001	10/10/2017	100	41241	INR
-Prod001	Cus002	Mark002	5/8/2018	3	-1	INR
-Prod002	Cus003	Mark003	4/6/2018	1	875	INR
-Prod002	Cus003	Mark003	4/11/2018	1	583	INR
-Prod002	Cus004	Mark003	6/18/2018	6	7176	INR
-
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|
-|    Prod001   |    Cus001     |	 Mark001   | 10/10/2017 |	   100    |     41241    |	  INR   |
-|    Prod001   |    Cus002     |	 Mark002   |  5/8/2018  |	   3      |      -1      |	  INR   |
-|    Prod002   |    Cus003     |	 Mark003   |  4/6/2018  |	   1      |      875     |	  INR   |
-|    Prod002   |    Cus003     |	 Mark003   |  4/11/2018 |	   1      |      583     |	  INR   |
-|    Prod002   |    Cus004     |	 Mark003   |  6/18/2018 |	   6      |      7176    |	  INR   |
+|    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   |
+|    Prod001   |    Cus002     |	 Mark002   | 2018-05-08 |	   3      |      -1      |	  INR   |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |      875     |	  INR   |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   |
+|    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   |
 
+1. I first utilized .dropna() to remove any rows that contained null values. Examining the dataset
+2. I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
+3. Examining the data, there are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were removed.
+4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which converts any sales amount in USD to INR.
+5. I converted all values under the order_date into a date format.
+6. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+```
+ts = ts.dropna()
+ts = ts.drop(ts[(ts['sales_amount']==-1) | (ts['sales_amount']==0)].index)
+
+ts['currency'].str.rstrip("\r")
+ts['norm_sales_amount'] = None
+ts.loc[ts['currency'] == 'INR', 'norm_sales_amount'] = ts.loc[ts['currency'] == 'INR', 'sales_amount']
+ts.loc[ts['currency'] == 'USD','norm_sales_amount'] = ts.loc[ts['currency'] == 'USD','sales_amount']*82
+ts['order_date'] = pd.to_datetime(ts['order_date'], dayfirst=False)
+
+missing(ts)
+ts.to_csv('clean_transaction_sales.csv', index=False)
+```
+| product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency | norm_sales_amount |
+|--------------|---------------|-------------|------------|-----------|--------------|----------|-------------------|
+|    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   | 41241 |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |     875      |	  INR   | 875 |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   | 583 |
+|    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   | 7176
+|    Prod003   |    Cus005     |	 Mark004   | 2017-11-20 |	   59     |      500     |	  USD   | 41000 |
