@@ -102,7 +102,9 @@ ts.to_csv('clean_transaction_sales.csv', index=False)
 m = pd.read_csv('markets.csv')
 
 print(m.head())
+print(m.tail())
 ```
+Top 5 rows:
 | markets_code | markets_name | zone |
 |--------------|--------------|------|
 |Mark001 |	Chennai |	South |
@@ -110,3 +112,46 @@ Mark002	| Mumbai |	Central |
 Mark003	| Ahmedabad |	North |
 Mark004	| Delhi NCR |	North |
 Mark005	| Kanpur |	North |
+
+Bottom 5 rows:
+| markets_code | markets_name | zone |
+|--------------|--------------|------|
+| Mark013 |	Bhopal |	Central |
+| Mark014	| Hyderabad	| South |
+| Mark015 |	Bhubaneshwar | South |
+| Mark097 | New York | NaN |	
+| Mark999 |	Paris	| NaN |
+
+
+1. All rows with NA values were dropped, which happened to be the New York and Paris markets.
+2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency. No duplicate rows were detected.
+3. Used duplicated() to check for any row that is a duplicated.
+4. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+```
+m = m.dropna()
+m = m.rename(columns={'markets_code':'market_code'})
+#print(m.duplicated().to_string())
+
+print(m.head())
+print(m.tail())
+
+missing(m)
+m.to_csv('clean_markets.csv', index=False)
+```
+Top 5 rows:
+| market_code | markets_name | zone |
+|--------------|--------------|------|
+|Mark001 |	Chennai |	South |
+Mark002	| Mumbai |	Central |
+Mark003	| Ahmedabad |	North |
+Mark004	| Delhi NCR |	North |
+Mark005	| Kanpur |	North |
+
+Bottom 5 rows:
+| market_code | markets_name | zone |
+|--------------|--------------|------|
+| Mark011	| Nagpur |	Central |
+| Mark012	| Surat	| North |
+| Mark013	| Bhopal	| Central |
+| Mark014	| Hyderabad	| South |
+| Mark015	| Bhubaneshwar |	South |
