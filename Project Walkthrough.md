@@ -222,3 +222,50 @@ print(p.head())
 |  Prod003  |Own Brand\r|
 |  Prod004  |Own Brand\r|
 |  Prod005  |Own Brand\r|
+1. In this dataset, there is formatting issues under the ‘product_type’ column due to extra spacing, similarly to the currencies in the Transaction Sales dataset. I removed ‘\r’ from all rows.
+2. Checked for duplicate rows, to which there were none.
+3. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+```
+p['product_type'] = p['product_type'].str.rstrip("\r")
+p = p.dropna()
+print('')
+duplicate(p)
+missing(p)
+
+print('\nCleaned Dataset:')
+print(p.head())
+p.to_csv('clean_products.csv', index=False)
+```
+|product_code |product_type|
+|-------------|------------|
+|Prod001 | Own Brand |
+|   Prod002 | Own Brand|
+|  Prod003  |Own Brand|
+|  Prod004  |Own Brand|
+|  Prod005  |Own Brand|
+
+### 🗓️ Cleaning Sales Years Dataset
+```
+print('\n- - - - - Sales Years - - - - -')
+sy = pd.read_csv('sales_years.csv')
+print('Original Dataset:')
+print(sy.head())
+```
+|date|cy_date|year|month_name|date_yy_mmm|
+|-------------|------------|-------------|-------------|-------------|
+|2017-06-01|  2017-06-01 | 2017 |      June  |  17-Jun\r|
+|2017-06-02 | 2017-06-01  |2017  |     June   | 17-Jun\r|
+|  2017-06-03|  2017-06-01 | 2017 |      June  |  17-Jun\r|
+|  2017-06-04 | 2017-06-01 | 2017  |     June  |  17-Jun\r|
+|  2017-06-05 | 2017-06-01 | 2017   |    June  |  17-Jun\r|
+1. Dropped the ‘date_yy_mmm’ and ‘cy_date’ column since I felt that they were redundant.
+2. Converted the ‘date’ column into date format to ensure proper formatting.
+3. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
+4. Checked for duplicate rows, to which there were none.
+5. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+
+
+
+
+
+
