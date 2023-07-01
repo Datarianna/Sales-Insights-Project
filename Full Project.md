@@ -75,7 +75,7 @@ print(ts.head())
 4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which converts any sales amount in USD to INR.
 5. Converted all values under the order_date into a date format.
 6. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
-```
+```python
 ts = ts.dropna()
 ts = ts.drop(ts[(ts['sales_amount']==-1) | (ts['sales_amount']==0)].index)
 ts = ts.replace('INR\r','INR').replace('USD\r','USD')
@@ -100,7 +100,7 @@ ts.to_csv('clean_transaction_sales.csv', index=False)
 |    Prod003   |    Cus005     |	 Mark004   | 2017-11-20 |	   59     |      500     |	  USD   | 41000 |
 
 ### 🌍 Cleaning Markets Dataset
-```
+```python
 print('\n- - - - - Market - - - - -')
 print('\nOriginal Dataset:')
 m = pd.read_csv('markets.csv')
@@ -133,7 +133,7 @@ Bottom 5 rows
 2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency.
 3. Used duplicated() to check for any row that is a duplicated. No duplicate rows were detected.
 4. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
-```
+```python
 m = m.dropna()
 m = m.rename(columns={'markets_code':'market_code'})
 
@@ -168,7 +168,7 @@ Bottom 5 rows
 
 
 ### 🧑 Cleaning Customers Dataset
-```
+```python
 print('\n- - - - - Customers - - - - -')
 print('\nOriginal Dataset:')
 c = pd.read_csv('customers.csv')
@@ -187,7 +187,7 @@ print(c.head())
 2. Dropped any NA values from the dataset.
 3. Checked for any duplicates in the dataset and none were detected.
 4. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
-```
+```python
 c = c.rename(columns={'custmer_name':'customer_name'})
 c = c.dropna()
 print('')
@@ -208,7 +208,7 @@ c.to_csv('clean_customers.csv', index=False)
 
 
 ### 🖱️ Cleaning Products Dataset
-```
+```python
 print('\n- - - - - Products - - - - -')
 print('Original Dataset:')
 p = pd.read_csv('products.csv')
@@ -224,7 +224,7 @@ print(p.head())
 1. In this dataset, there is formatting issues under the ‘product_type’ column due to extra spacing, similarly to the currencies in the Transaction Sales dataset. I removed ‘\r’ from all rows.
 2. Checked for duplicate rows, to which there were none.
 3. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
-```
+```python
 p['product_type'] = p['product_type'].str.rstrip("\r")
 p = p.dropna()
 print('')
@@ -244,7 +244,7 @@ p.to_csv('clean_products.csv', index=False)
 |  Prod005  |Own Brand|
 
 ### 🗓️ Cleaning Sales Years Dataset
-```
+```python
 print('\n- - - - - Sales Years - - - - -')
 sy = pd.read_csv('sales_years.csv')
 print('Original Dataset:')
@@ -262,7 +262,7 @@ print(sy.head())
 3. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
 4. Checked for duplicate rows, to which there were none.
 5. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
-```
+```python
 sy.drop("date_yy_mmm", axis=1, inplace=True)
 sy.drop("cy_date", axis=1, inplace=True)
 sy['date'] = pd.to_datetime(sy['date'], dayfirst=False)
@@ -289,23 +289,23 @@ sy.to_csv('clean_sales_years.csv', index=False)
 
 # Querying Results and Analysis
 ### Question 1: Who are the top five customers for AtliQ each year based on total sales revenue?
-```sql
+```python
 
 ```
 ### Question 2: What is the trend of sales revenue for AtliQ over the past three years?
-```sql
+```python
 
 ```
 ### Question 3: Within the last year, which top three products sold the most in terms of the quantity of sales?
-```sql
+```python
 
 ```
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
-```sql
+```python
 
 ```
 ### Question 5: What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
-```sql
+```python
 
 ```
 
