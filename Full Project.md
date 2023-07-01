@@ -47,7 +47,7 @@ The objective of this project is to create a dashboard that provides visual insi
 ## Research Questions
 1. Who are the top five customers for AtliQ in 2019 based on total sales revenue??
 2. What is the trend of total sales revenue for AtliQ in 2017-2019?
-3. Within the last year, which top three products sold the most in terms of the quantity of sales?
+3. From 2017-2020, which three products sold the most units?
 4. How does the sales revenue vary across different regions in India throughout the years?
 5. What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
 
@@ -337,10 +337,54 @@ print(total_rev_years)
 
 Name: norm_sales_amount, dtype: int64
 
-### Question 3: Within the last year, which top three products sold the most in terms of the quantity of sales?
+### Question 3: From 2017-2020, which three products sold the most units?
+1. Created a filter that filters in rows thar are within 2017-2020.
+2. Created a for loop that goes through every unique year from the 'order_date' column. Each row is filtered by the 'year_data' so that only the year is represented.
+3. The 'year_data' variable is grouped according to 'product_code.' I calculated the sum of sales quantity each product and presented only the products with the three highest sales quantities.
+4. The for loop repeats the process for each year.
 ```python
-
+year_filter = ts[(ts['order_date'] >= '2017-01-01') & (ts['order_date'] <= '2020-12-31')]
+for year in year_filter['order_date'].dt.year.unique():
+  year_data = year_filter[year_filter['order_date'].dt.year == year]
+  top_three = year_data.groupby('product_code')['sales_qty'].sum().nlargest(3)
+  print(f"\nTop 3 products sold in {year}:")
+  print(top_three)
 ```
+**2017**
+product_code| |
+------------|-|
+Prod003  |  1512
+Prod013   |  582
+Prod001   |  200
+
+Name: sales_qty, dtype: int64
+
+**2018**
+product_code| |
+------------|-|
+Prod018  |  2075
+Prod016  |  1032
+Prod013   |  495
+
+Name: sales_qty, dtype: int64
+
+**2019**
+product_code| |
+------------|-|
+Prod005  |  946
+Prod016   | 872
+Prod018   | 727
+
+Name: sales_qty, dtype: int64
+
+**2020**
+product_code| |
+------------|-|
+Prod005  |  34
+Prod011   |  4
+
+Name: sales_qty, dtype: int64
+
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
 ```python
 
