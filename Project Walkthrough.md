@@ -263,8 +263,27 @@ print(sy.head())
 3. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
 4. Checked for duplicate rows, to which there were none.
 5. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+```
+sy.drop("date_yy_mmm", axis=1, inplace=True)
+sy.drop("cy_date", axis=1, inplace=True)
+sy['date'] = pd.to_datetime(sy['date'], dayfirst=False)
+sy['year'] = sy['date'].dt.year
+sy['month_name'] = sy['date'].dt.month_name()
+print('')
+duplicate(sy)
+missing(sy)
 
-
+print('\nCleaned Dataset:')
+print(sy.head())
+sy.to_csv('clean_sales_years.csv', index=False)
+```
+|date|year|month_name|
+|---|-----|-----|
+|2017-06-01|2017      |June
+| 2017-06-02|  2017    |   June
+| 2017-06-03 | 2017     |  June
+| 2017-06-04  |2017      | June
+| 2017-06-05  |2017       |June
 
 
 
