@@ -285,6 +285,11 @@ sy.to_csv('clean_sales_years.csv', index=False)
 | 2017-06-04  |2017      | June
 | 2017-06-05  |2017       |June
 
+# ERD Diagram: Datasets represents a star schema
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/10222a20-f42a-4ff8-a1a4-8c0ac69d3e3e)
 
+# Querying Results and Analysis
+
+# Tableau Dashboard
 
 
