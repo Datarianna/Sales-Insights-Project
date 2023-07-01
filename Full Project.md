@@ -46,7 +46,7 @@ The objective of this project is to create a dashboard that provides visual insi
 
 ## Research Questions
 1. Who are the top five customers for AtliQ in 2019 based on total sales revenue??
-2. What is the trend of sales revenue for AtliQ over the past three years?
+2. What is the trend of total sales revenue for AtliQ in 2017-2019?
 3. Within the last year, which top three products sold the most in terms of the quantity of sales?
 4. How does the sales revenue vary across different regions in India throughout the years?
 5. What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
@@ -258,16 +258,17 @@ print(sy.head())
 |  2017-06-04 | 2017-06-01 | 2017  |     June  |  17-Jun\r|
 |  2017-06-05 | 2017-06-01 | 2017   |    June  |  17-Jun\r|
 1. Dropped the ‘date_yy_mmm’ and ‘cy_date’ column since I felt that they were redundant.
-2. Converted the ‘date’ column into date format to ensure proper formatting.
-3. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
-4. Checked for duplicate rows, to which there were none.
-5. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+2. Renamed the 'date' column to 'order_date' to make joins easier, as well as converted the ‘order_date’ column into date format to ensure proper formatting.
+4. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘order_date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
+5. Checked for duplicate rows, to which there were none.
+6. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
 sy.drop("date_yy_mmm", axis=1, inplace=True)
 sy.drop("cy_date", axis=1, inplace=True)
-sy['date'] = pd.to_datetime(sy['date'], dayfirst=False)
-sy['year'] = sy['date'].dt.year
-sy['month_name'] = sy['date'].dt.month_name()
+sy = sy.rename(columns={'date':'order_date'})
+sy['order_date'] = pd.to_datetime(sy['order_date'], dayfirst=False)
+sy['year'] = sy['order_date'].dt.year
+sy['month_name'] = sy['order_date'].dt.month_name()
 print('')
 duplicate(sy)
 missing(sy)
@@ -276,7 +277,7 @@ print('\nCleaned Dataset:')
 print(sy.head())
 sy.to_csv('clean_sales_years.csv', index=False)
 ```
-|date|year|month_name|
+|order_date|year|month_name|
 |---|-----|-----|
 |2017-06-01|2017      |June
 | 2017-06-02|  2017    |   June
@@ -302,17 +303,39 @@ print(join_ts_c.head())
 |   Prod002   |   Cus004    |Mark003     | 2018-06-18|     6      | 7176   |   INR        |       7176 | Surface Stores | Brick & Mortar
 |  Prod003    |  Cus005     |Mark004     |2017-11-20  |   59      | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
 
-
-
-
-2. Created a variable called 'year_filter' that filters in rows with an order date within the year 2019.
+1. Created a filter that will only contain rows with an order date within the year 2019.
+2. Grouped the filtered dataset by customers and summed up the total normalized sales amount for each customer.
+3. Sorted the dataframe in descending order and ensured to only include the top five customers and their total sales.
 ```python
-
+year_filter = join_ts_c[(join_ts_c['order_date']>='2019-01-01') & (join_ts_c['order_date']<='2019-12-31')]
+top_five_customers = year_filter.groupby('customer_name')['norm_sales_amount'].sum().sort_values(ascending=False).head(5)
+print(top_five_customers)
 ```
-### Question 2: What is the trend of sales revenue for AtliQ over the past three years?
+|customer_name         | |
+|----------------------|-|
+|Electricalsara Stores |917920
+|Electricalslytical    |629237
+|Logic Stores          |525379
+|Path                  |454822
+|Info Stores           |347682
+Name: norm_sales_amount, dtype: int64
+**Answer**: According to the dataframe, the customer that has spent the most money on AtliQ Hardware is Electricalsara Stores, with a sales amount of ₹917920. The second 
+
+### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
+1. Created a filter that filters in rows that are within the years 2017-2019.
+2. Grouped the filtered dataset by the order date year, then summed up the total normalized sales amount for each year.
 ```python
-
+year_filter = ts[(ts['order_date']>='2017-01-01') & (ts['order_date']<='2019-12-31')]
+total_rev_years = year_filter.groupby(year_filter['order_date'].dt.year)['norm_sales_amount'].sum()
+print(total_rev_years)
 ```
+|order_date| |
+|----------|-|
+|2017  |  1895109
+|2018  |  7687469
+|2019  |  3296370
+Name: norm_sales_amount, dtype: int64
+
 ### Question 3: Within the last year, which top three products sold the most in terms of the quantity of sales?
 ```python
 
