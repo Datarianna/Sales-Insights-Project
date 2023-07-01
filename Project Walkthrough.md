@@ -56,6 +56,8 @@ The objective of this project is to create a dashboard that provides visual insi
 ### 💲 Cleaning Transaction Sales Dataset
 
 ```
+print('- - - - - Transaction Sales - - - - -')
+print('\nOriginal Dataset:')
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
@@ -72,8 +74,8 @@ print(ts.head())
 2. I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
 3. Examining the data, there are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were removed.
 4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which converts any sales amount in USD to INR.
-5. I converted all values under the order_date into a date format.
-6. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+5. Converted all values under the order_date into a date format.
+6. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```
 ts = ts.dropna()
 ts = ts.drop(ts[(ts['sales_amount']==-1) | (ts['sales_amount']==0)].index)
@@ -100,10 +102,9 @@ ts.to_csv('clean_transaction_sales.csv', index=False)
 
 ### 🌍 Cleaning Markets Dataset
 ```
-print('Market')
+print('\n- - - - - Market - - - - -')
 print('\nOriginal Dataset:')
 m = pd.read_csv('markets.csv')
-
 print('Top 5 rows')
 print(m.head())
 print('Bottom 5 rows')
@@ -130,12 +131,15 @@ Bottom 5 rows
 
 
 1. All rows with NA values were dropped, which happened to be the New York and Paris markets.
-2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency. No duplicate rows were detected.
-3. Used duplicated() to check for any row that is a duplicated.
-4. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency.
+3. Used duplicated() to check for any row that is a duplicated. No duplicate rows were detected.
+4. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```
+m = m.dropna()
+m = m.rename(columns={'markets_code':'market_code'})
+
 print('')
-duplicate(ts)
+duplicate(m)
 missing(m)
 
 print('\nCleaned Dataset:')
@@ -163,3 +167,58 @@ Bottom 5 rows
 | Mark014	| Hyderabad	| South |
 | Mark015	| Bhubaneshwar |	South |
 
+
+### 🧑 Cleaning Customers Dataset
+```
+print('\n- - - - - Customers - - - - -')
+print('\nOriginal Dataset:')
+c = pd.read_csv('customers.csv')
+print(c.head())
+```
+|customer_code|custmer_name|customer_type|
+|-------------|------------|-------------|
+|Cus001|	Surge Stores|	Brick & Mortar|
+|Cus002	|Nomad Stores	|Brick & Mortar|
+|Cus003	|Excel Stores	|Brick & Mortar|
+|Cus004	|Surface Stores|	Brick & Mortar|
+|Cus005	|Premium Stores	|Brick & Mortar|
+
+
+1. I fixed the misspelling of the ‘custmer_name’ column.
+2. Dropped any NA values from the dataset.
+3. Checked for any duplicates in the dataset and none were detected.
+4. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
+```
+c = c.rename(columns={'custmer_name':'customer_name'})
+c = c.dropna()
+print('')
+duplicate(c)
+missing(c)
+
+print('\nCleaned Dataset:')
+print(c.head())
+c.to_csv('clean_customers.csv', index=False)
+```
+|customer_code|customer_name|customer_type|
+|-------------|------------|-------------|
+|Cus001|	Surge Stores|	Brick & Mortar|
+|Cus002	|Nomad Stores	|Brick & Mortar|
+|Cus003	|Excel Stores	|Brick & Mortar|
+|Cus004	|Surface Stores|	Brick & Mortar|
+|Cus005	|Premium Stores	|Brick & Mortar|
+
+
+### 🖱️ Cleaning Products Dataset
+```
+print('\n- - - - - Products - - - - -')
+print('Original Dataset:')
+p = pd.read_csv('products.csv')
+print(p.head())
+```
+|product_code |product_type|
+|-------------|------------|
+|Prod001 | Own Brand\r |
+|   Prod002 | Own Brand\r|
+|  Prod003  |Own Brand\r|
+|  Prod004  |Own Brand\r|
+|  Prod005  |Own Brand\r|
