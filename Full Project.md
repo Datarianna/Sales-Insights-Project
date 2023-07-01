@@ -318,8 +318,8 @@ print(top_five_customers)
 |Logic Stores          |525379
 |Path                  |454822
 |Info Stores           |347682
+
 Name: norm_sales_amount, dtype: int64
-**Answer**: According to the dataframe, the customer that has spent the most money on AtliQ Hardware is Electricalsara Stores, with a sales amount of ₹917920. The second 
 
 ### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
 1. Created a filter that filters in rows that are within the years 2017-2019.
@@ -334,6 +334,7 @@ print(total_rev_years)
 |2017  |  1895109
 |2018  |  7687469
 |2019  |  3296370
+
 Name: norm_sales_amount, dtype: int64
 
 ### Question 3: Within the last year, which top three products sold the most in terms of the quantity of sales?
