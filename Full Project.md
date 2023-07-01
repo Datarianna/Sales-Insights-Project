@@ -45,7 +45,7 @@ The objective of this project is to create a dashboard that provides visual insi
 - **date_yy_mmm** *(text)*: The day and month of the transaction.
 
 ## Research Questions
-1. Who are the top five customers for AtliQ each year based on total sales revenue?
+1. Who are the top five customers for AtliQ in 2019 based on total sales revenue??
 2. What is the trend of sales revenue for AtliQ over the past three years?
 3. Within the last year, which top three products sold the most in terms of the quantity of sales?
 4. How does the sales revenue vary across different regions in India throughout the years?
@@ -288,7 +288,24 @@ sy.to_csv('clean_sales_years.csv', index=False)
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/10222a20-f42a-4ff8-a1a4-8c0ac69d3e3e)
 
 # Querying Results and Analysis
-### Question 1: Who are the top five customers for AtliQ each year based on total sales revenue?
+### Question 1: Who are the top five customers for AtliQ in 2019 based on total sales revenue?
+I first created a left join between the Transaction Sales (left) and Customer (right) Datasets.
+```python
+join_ts_c = pd.merge(ts, c, on='customer_code', how='left')
+print(join_ts_c.head())
+```
+|product_code |customer_code| market_code| order_date|  sales_qty | sales_amount |currency|norm_sales_amount|customer_name|customer_type|
+|-------------|-------------|------------|-----------|------------|--------------|--------|-----------------|-------------|-------------|
+| Prod001   |     Cus001|     Mark001 2017-10-10|      100    |     41241   |   INR      |        41241  |  Surge Stores | Brick & Mortar
+|   Prod002  |    Cus003|     Mark003 2018-04-06 |    1        |   875     | INR        |        875  |  Excel Stores | Brick & Mortar
+|  Prod002   |   Cus003|     Mark003 2018-04-11 |      1        |   583    |  INR        |        583  |  Excel Stores | Brick & Mortar
+|   Prod002    |   Cus004|     Mark003 2018-06-18|     6         | 7176   |   INR        |       7176 | Surface Stores | Brick & Mortar
+|  Prod003   |  Cus005|     Mark004 2017-11-20  |   59          | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
+
+
+
+
+2. Created a variable called 'year_filter' that filters in rows with an order date within the year 2019.
 ```python
 
 ```
