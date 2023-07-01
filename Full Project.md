@@ -296,11 +296,11 @@ print(join_ts_c.head())
 ```
 |product_code |customer_code| market_code| order_date|  sales_qty | sales_amount |currency|norm_sales_amount|customer_name|customer_type|
 |-------------|-------------|------------|-----------|------------|--------------|--------|-----------------|-------------|-------------|
-| Prod001   |     Cus001|     Mark001 2017-10-10|      100    |     41241   |   INR      |        41241  |  Surge Stores | Brick & Mortar
-|   Prod002  |    Cus003|     Mark003 2018-04-06 |    1        |   875     | INR        |        875  |  Excel Stores | Brick & Mortar
-|  Prod002   |   Cus003|     Mark003 2018-04-11 |      1        |   583    |  INR        |        583  |  Excel Stores | Brick & Mortar
-|   Prod002    |   Cus004|     Mark003 2018-06-18|     6         | 7176   |   INR        |       7176 | Surface Stores | Brick & Mortar
-|  Prod003   |  Cus005|     Mark004 2017-11-20  |   59          | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
+| Prod001     | Cus001      |Mark001     | 2017-10-10|     100    |     41241   |   INR      |        41241  |  Surge Stores | Brick & Mortar
+|   Prod002   |    Cus003   |Mark003     | 2018-04-06 |    1      |   875     | INR        |        875  |  Excel Stores | Brick & Mortar
+|  Prod002    |   Cus003    |Mark003     | 2018-04-11 |      1    |   583    |  INR        |        583  |  Excel Stores | Brick & Mortar
+|   Prod002   |   Cus004    |Mark003     | 2018-06-18|     6      | 7176   |   INR        |       7176 | Surface Stores | Brick & Mortar
+|  Prod003    |  Cus005     |Mark004     |2017-11-20  |   59      | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
 
 
 
