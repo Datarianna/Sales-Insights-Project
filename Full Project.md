@@ -289,6 +289,26 @@ sy.to_csv('clean_sales_years.csv', index=False)
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/10222a20-f42a-4ff8-a1a4-8c0ac69d3e3e)
 
 # Querying Results and Analysis
+### Question 1: Who are the top five customers for AtliQ each year based on total sales revenue?
+```sql
+
+```
+### Question 2: What is the trend of sales revenue for AtliQ over the past three years?
+```sql
+
+```
+### Question 3: Within the last year, which top three products sold the most in terms of the quantity of sales?
+```sql
+
+```
+### Question 4: How does the sales revenue vary across different regions in India throughout the years?
+```sql
+
+```
+### Question 5: What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
+```sql
+
+```
 
 # Tableau Dashboard
 
