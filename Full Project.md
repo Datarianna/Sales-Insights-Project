@@ -11,7 +11,6 @@ The objective of this project is to create a dashboard that provides visual insi
 
 ### Software Used
 - Python (Pandas)
-- SQL
 - Tableau
 
 ## Datasets and Data Description
@@ -55,7 +54,7 @@ The objective of this project is to create a dashboard that provides visual insi
 # Data Cleaning
 ### 💲 Cleaning Transaction Sales Dataset
 
-```
+```python
 print('- - - - - Transaction Sales - - - - -')
 print('\nOriginal Dataset:')
 ts = pd.read_csv('transaction_sales.csv')
