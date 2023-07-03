@@ -315,6 +315,10 @@ print(top_five_customers)
 
 Name: norm_sales_amount, dtype: int64
 
+**Tableau Graph**:
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/fd061071-7035-46b2-a0a6-a657005f8c22)
+
+
 **Answer**: 
 
 ### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
