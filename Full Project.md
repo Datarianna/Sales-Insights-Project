@@ -123,6 +123,7 @@ Top 5 rows
 |    Mark003 	 |   Ahmedabad  |	North |
 |    Mark004	 |   Delhi NCR  |	North |
 |    Mark005	 |    Kanpur    |	North |
+
 Bottom 5 rows
 | markets_code | markets_name | zone  |
 |--------------|--------------|-------|
@@ -158,6 +159,7 @@ Top 5 rows
 |    Mark003	 |   Ahmedabad  |	North |
 |    Mark004	 |   Delhi NCR  |	North |
 |    Mark005	 |     Kanpur   |	North |
+
 Bottom 5 rows
 | market_code | markets_name |  zone  |
 |--------------|-------------|--------|
@@ -170,18 +172,16 @@ Bottom 5 rows
 
 ### 🧑 Cleaning Customers Dataset
 ```python
-print('\n- - - - - Customers - - - - -')
-print('\nOriginal Dataset:')
 c = pd.read_csv('customers.csv')
 print(c.head())
 ```
-|customer_code|custmer_name|customer_type|
-|-------------|------------|-------------|
-|Cus001|	Surge Stores|	Brick & Mortar|
-|Cus002	|Nomad Stores	|Brick & Mortar|
-|Cus003	|Excel Stores	|Brick & Mortar|
-|Cus004	|Surface Stores|	Brick & Mortar|
-|Cus005	|Premium Stores	|Brick & Mortar|
+|customer_code| custmer_name | customer_type|
+|-------------|--------------|--------------|
+|    Cus001   |	Surge Stores |Brick & Mortar|
+|    Cus002	  |Nomad Stores	 |Brick & Mortar|
+|    Cus003	  | Excel Stores |Brick & Mortar|
+|    Cus004  	|Surface Stores|Brick & Mortar|
+|    Cus005	  |Premium Stores|Brick & Mortar|
 
 
 1. I fixed the misspelling of the ‘custmer_name’ column.
@@ -191,27 +191,24 @@ print(c.head())
 ```python
 c = c.rename(columns={'custmer_name':'customer_name'})
 c = c.dropna()
-print('')
+
 duplicate(c)
 missing(c)
 
-print('\nCleaned Dataset:')
 print(c.head())
 c.to_csv('clean_customers.csv', index=False)
 ```
-|customer_code|customer_name|customer_type|
-|-------------|------------|-------------|
-|Cus001|	Surge Stores|	Brick & Mortar|
-|Cus002	|Nomad Stores	|Brick & Mortar|
-|Cus003	|Excel Stores	|Brick & Mortar|
-|Cus004	|Surface Stores|	Brick & Mortar|
-|Cus005	|Premium Stores	|Brick & Mortar|
+|customer_code|customer_name |customer_type |
+|-------------|----------==--|-----------=--|
+|    Cus001   |	Surge Stores |Brick & Mortar|
+|    Cus002	  |Nomad Stores	 |Brick & Mortar|
+|    Cus003	  |Excel Stores	 |Brick & Mortar|
+|    Cus004  	|Surface Stores|Brick & Mortar|
+|    Cus005	  |Premium Stores|Brick & Mortar|
 
 
 ### 🖱️ Cleaning Products Dataset
 ```python
-print('\n- - - - - Products - - - - -')
-print('Original Dataset:')
 p = pd.read_csv('products.csv')
 print(p.head())
 ```
@@ -222,45 +219,42 @@ print(p.head())
 |  Prod003  |Own Brand\r|
 |  Prod004  |Own Brand\r|
 |  Prod005  |Own Brand\r|
-1. In this dataset, there is formatting issues under the ‘product_type’ column due to extra spacing, similarly to the currencies in the Transaction Sales dataset. I removed ‘\r’ from all rows.
+1. In this dataset, there is formatting issues under the ‘product_type’ column due to extra spacing, similarly to the currencies in the Transaction Sales dataset. I removed ‘\r’ from all rows that had this.
 2. Checked for duplicate rows, to which there were none.
 3. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
 p['product_type'] = p['product_type'].str.rstrip("\r")
 p = p.dropna()
-print('')
+
 duplicate(p)
 missing(p)
 
-print('\nCleaned Dataset:')
 print(p.head())
 p.to_csv('clean_products.csv', index=False)
 ```
-|product_code |product_type|
-|-------------|------------|
-|Prod001 | Own Brand |
-|   Prod002 | Own Brand|
-|  Prod003  |Own Brand|
-|  Prod004  |Own Brand|
-|  Prod005  |Own Brand|
+|product_code|product_type|
+|-------------|-----------|
+|   Prod001   | Own Brand |
+|   Prod002   | Own Brand |
+|   Prod003   | Own Brand |
+|   Prod004   | Own Brand |
+|   Prod005   | Own Brand |
 
 ### 🗓️ Cleaning Sales Years Dataset
 ```python
-print('\n- - - - - Sales Years - - - - -')
 sy = pd.read_csv('sales_years.csv')
-print('Original Dataset:')
 print(sy.head())
 ```
-|date|cy_date|year|month_name|date_yy_mmm|
-|-------------|------------|-------------|-------------|-------------|
-|2017-06-01|  2017-06-01 | 2017 |      June  |  17-Jun\r|
-|2017-06-02 | 2017-06-01  |2017  |     June   | 17-Jun\r|
-|  2017-06-03|  2017-06-01 | 2017 |      June  |  17-Jun\r|
-|  2017-06-04 | 2017-06-01 | 2017  |     June  |  17-Jun\r|
-|  2017-06-05 | 2017-06-01 | 2017   |    June  |  17-Jun\r|
+|   date   | cy_date  |year|month_name|date_yy_mmm|
+|----------|----------|----|----------|-----------|
+|2017-06-01|2017-06-01|2017|   June   |  17-Jun\r |
+|2017-06-02|2017-06-01|2017|   June   |  17-Jun\r |
+|2017-06-03|2017-06-01|2017|   June   |  17-Jun\r |
+|2017-06-04|2017-06-01|2017|   June   |  17-Jun\r |
+|2017-06-05|2017-06-01|2017|   June   |  17-Jun\r |
 1. Dropped the ‘date_yy_mmm’ and ‘cy_date’ column since I felt that they were redundant.
 2. Renamed the 'date' column to 'order_date' to make joins easier, as well as converted the ‘order_date’ column into date format to ensure proper formatting.
-4. Dropped the ‘year’ and ‘month_name’ columns from the dataset and created new versions of them. This time, I extracted the year portion of the ‘date’ column and put it into a new ‘year’ column. Then, I extracted the month portion from the ‘order_date’ column and put it into a new ‘month_name’ column while also making sure that it is written in the month name and not the month number. I did this to really make sure that they are in date format.
+4. Extracted the year portion of the ‘date’ column and used it to replace the values in the 'year.' Then, I extracted the month portion from the ‘order_date’ column and did the same. This was to ensure that the columns are in the proper format.
 5. Checked for duplicate rows, to which there were none.
 6. I checked dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
@@ -270,21 +264,20 @@ sy = sy.rename(columns={'date':'order_date'})
 sy['order_date'] = pd.to_datetime(sy['order_date'], dayfirst=False)
 sy['year'] = sy['order_date'].dt.year
 sy['month_name'] = sy['order_date'].dt.month_name()
-print('')
+
 duplicate(sy)
 missing(sy)
 
-print('\nCleaned Dataset:')
 print(sy.head())
 sy.to_csv('clean_sales_years.csv', index=False)
 ```
-|order_date|year|month_name|
-|---|-----|-----|
-|2017-06-01|2017      |June
-| 2017-06-02|  2017    |   June
-| 2017-06-03 | 2017     |  June
-| 2017-06-04  |2017      | June
-| 2017-06-05  |2017       |June
+|order_date|year |month_name|
+|----------|-----|----------|
+|2017-06-01|2017 |   June   |
+|2017-06-02|2017 |   June   |
+|2017-06-03|2017 |   June   |
+|2017-06-04|2017 |   June   |
+|2017-06-05|2017 |   June   |
 
 # ERD Diagram: Datasets represents a star schema
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/10222a20-f42a-4ff8-a1a4-8c0ac69d3e3e)
@@ -322,6 +315,8 @@ print(top_five_customers)
 
 Name: norm_sales_amount, dtype: int64
 
+**Answer**: 
+
 ### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
 1. Created a filter that filters in rows that are within the years 2017-2019.
 2. Grouped the filtered dataset by the order date year, then summed up the total normalized sales amount for each year.
@@ -337,6 +332,8 @@ print(total_rev_years)
 |2019  |  3296370
 
 Name: norm_sales_amount, dtype: int64
+
+**Answer**:
 
 ### Question 3: From 2017-2020, which three products sold the most units?
 1. Created a filter that filters in rows thar are within 2017-2020.
@@ -386,13 +383,43 @@ Prod011   |  4
 
 Name: sales_qty, dtype: int64
 
+**Answer**:
+
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
+I first left joined the Transaction Sales and Market Datasets.
 ```python
-
+join_ts_m = pd.merge(ts, m, on='market_code', how='left')
+print(join_ts_m.head())
 ```
-### Question 5: What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
+|product_code| customer_code| market_code| order_date | sales_qty | sales_amount | currency | norm_sales_amount | markets_name | zone |
+|-|-|-|-|-|-|-|-|-|-|
+|   Prod001  |   Cus001     |  Mark001   | 2017-10-10 |    100    |     41241    |  INR     |         41241     | Chennai      | South |
+|      Prod002|Cus003  |   Mark003| 2018-04-06   |       1|875   |   INR     |           875  |  Ahmedabad | North|
+|      Prod002    |    Cus003   |  Mark003 |2018-04-11     |     1      |     583    |  INR          |      583|Ahmedabad|  North|
+|      Prod002    |    Cus004  |   Mark003 |2018-06-18     |     6     |     7176   |   INR      |         7176 |   Ahmedabad|North|
+|      Prod003    |    Cus005  |   Mark004 |2017-11-20    |     59     |      500   |   USD    |          41000 |   Delhi NCR | North|
+Once left joined, I grouped the dataframe by zone and the name of the market, the summed up the total sales amount for each market.
 ```python
+sales_regions = join_ts_m.groupby(['zone','markets_name'])['sales_amount'].sum()
+print(sales_regions.to_string())
+```
+|zone|markets_name|-|
+|----|------------|-|
+|Central | Bhopal  |    88388|
+        | Mumbai     |     6539584|
+|North  |  Ahmedabad   |    1027488|
+        | Delhi NCR   |    4098717|
+        | Kanpur      |     434883|
+        | Lucknow     |     105333|
+|South  |  Chennai    |      485083|
 
+**Answer**:
+
+### Question 5: What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
+I left joined the Transaction Sales and Products Datasets.
+```python
+join_ts_p = pd.merge(ts, p, on='product_code',how='left')
+print(join_ts_p.head())
 ```
 
 # Tableau Dashboard
