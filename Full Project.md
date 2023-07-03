@@ -82,9 +82,10 @@ print(ts.head())
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   |
 |    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   |
 1. I first utilized .dropna() to remove any rows that contained null values. Examining the dataset, I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
-3. There are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were replaced with a proper format.
-4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which contains USD sales amounts converted to INR.
-5. Converted all values under the order_date into a date format to ensure the correct data type.
+2. There are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were replaced with a proper format.
+3. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which contains USD sales amounts converted to INR.
+4. Converted all values under the order_date into a date format to ensure the correct data type.
+5. Used duplicated() to check for any row that is a duplicated. No duplicate rows were detected.
 6. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
 ts = ts.dropna()
@@ -115,26 +116,23 @@ print(m.head())
 print(m.tail())
 ```
 Top 5 rows
-| markets_code | markets_name | zone |
-|--------------|--------------|------|
-|Mark001 |	Chennai |	South |
-Mark002	| Mumbai |	Central |
-Mark003	| Ahmedabad |	North |
-Mark004	| Delhi NCR |	North |
-Mark005	| Kanpur |	North |
-
+| markets_code | markets_name | zone  |
+|--------------|--------------|-------|
+|    Mark001   |	  Chennai   |	South |
+|    Mark002 	 |    Mumbai    |Central|
+|    Mark003 	 |   Ahmedabad  |	North |
+|    Mark004	 |   Delhi NCR  |	North |
+|    Mark005	 |    Kanpur    |	North |
 Bottom 5 rows
-| markets_code | markets_name | zone |
-|--------------|--------------|------|
-| Mark013 |	Bhopal |	Central |
-| Mark014	| Hyderabad	| South |
-| Mark015 |	Bhubaneshwar | South |
-| Mark097 | New York | NaN |	
-| Mark999 |	Paris	| NaN |
-
-
-1. All rows with NA values were dropped, which happened to be the New York and Paris markets.
-2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency.
+| markets_code | markets_name | zone  |
+|--------------|--------------|-------|
+|    Mark013   |	  Bhopal    |Central|
+|    Mark014	 |  Hyderabad 	| South |
+|    Mark015   | Bhubaneshwar | South |
+|    Mark097   |   New York   |  NaN  |	
+|    Mark999   |	  Paris   	|  NaN  |
+1. I used .dropna() to remove rows with NA values. The values dropped happened to be the New York and Paris markets.
+2. The column name ‘markets_code’ was changed to ‘market_code’ for consistency and to make joins easier to do for analysis.
 3. Used duplicated() to check for any row that is a duplicated. No duplicate rows were detected.
 4. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
@@ -142,33 +140,32 @@ m = m.dropna()
 m = m.rename(columns={'markets_code':'market_code'})
 
 print('')
+m = m.dropna()
+m = m.rename(columns={'markets_code':'market_code'})
+
 duplicate(m)
 missing(m)
 
-print('\nCleaned Dataset:')
-print('Top 5 rows')
 print(m.head())
-print('Bottom 5 rows')
 print(m.tail())
 m.to_csv('clean_markets.csv', index=False)
 ```
 Top 5 rows
-| market_code | markets_name | zone |
-|--------------|--------------|------|
-|Mark001 |	Chennai |	South |
-Mark002	| Mumbai |	Central |
-Mark003	| Ahmedabad |	North |
-Mark004	| Delhi NCR |	North |
-Mark005	| Kanpur |	North |
-
+| market_code | markets_name |  zone  |
+|--------------|--------------|-------|
+|    Mark001   |  	Chennai   |	South |
+|    Mark002 	 |    Mumbai    |Central|
+|    Mark003	 |   Ahmedabad  |	North |
+|    Mark004	 |   Delhi NCR  |	North |
+|    Mark005	 |     Kanpur   |	North |
 Bottom 5 rows
-| market_code | markets_name | zone |
-|--------------|--------------|------|
-| Mark011	| Nagpur |	Central |
-| Mark012	| Surat	| North |
-| Mark013	| Bhopal	| Central |
-| Mark014	| Hyderabad	| South |
-| Mark015	| Bhubaneshwar |	South |
+| market_code | markets_name |  zone  |
+|--------------|-------------|--------|
+|    Mark011   |    Nagpur   |Central |
+|    Mark012 	 |    Surat	   | North  |
+|    Mark013	 |    Bhopal	 | Central|
+|    Mark014	 |  Hyderabad	 | South  |
+|    Mark015   | Bhubaneshwar|	South |
 
 
 ### 🧑 Cleaning Customers Dataset
