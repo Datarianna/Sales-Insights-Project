@@ -318,7 +318,6 @@ Name: norm_sales_amount, dtype: int64
 **Tableau Graph**:
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/fd061071-7035-46b2-a0a6-a657005f8c22)
 
-
 **Answer**: 
 
 ### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
@@ -336,6 +335,9 @@ print(total_rev_years)
 |2019  |  3296370
 
 Name: norm_sales_amount, dtype: int64
+
+**Tableau Graph**:
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/e0f6db0c-e87d-4848-a4e8-41ee0d35d166)
 
 **Answer**:
 
@@ -387,6 +389,10 @@ Prod011   |  4
 
 Name: sales_qty, dtype: int64
 
+**Tableau Graph**:
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7468ed78-5da7-49e7-a544-ef28f64b9ecd)
+
+
 **Answer**:
 
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
@@ -418,6 +424,12 @@ print(sales_regions.to_string())
 |        | Lucknow     |     105333|
 |South  |  Chennai    |      485083|
 
+**Tableau Graph**:
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7aebd4b5-f90f-477a-9b2d-bf05a1e19323)
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1352b13f-c559-4f6a-8060-9bce58f7f311)
+
+
+
 **Answer**:
 
 ### Question 5: What is the total sales revenue and total number of units sold for each customer type in 2019?
@@ -446,6 +458,8 @@ print(customer_type)
 |E-Commerce           |828      |      1374295   |
 
 **Answer**:
+
+
 
 # Tableau Dashboard
 
