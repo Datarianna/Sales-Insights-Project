@@ -1,13 +1,10 @@
 # Sales Insights Project
 
 # About
-AtliQ Hardware is a technology company based in India that sells various types of hardware for other companies.
-
-### Problem
-AtliQ is unable to track sales accurately and gather proper insight of their performances.
+AtliQ Hardware is a technology company based in India that sells various types of computer hardware and devices to several companies throughout India and the United States. AtliQ has an issue where they are unable to track sales accurately and gather proper insight of their performances. Their data is solely stored in spreadsheets, which can be difficult to properly see their business performance. They rely on managers to give them verbal reports on how the business is doing, which can be problematic because they may tend to make it seem like the company is doing better than it really is.
 
 ### Objective
-The objective of this project is to create a dashboard that provides visual insights on the company's performance that will help managers and stakeholders make better informed decisions based on data.
+The objective of this project is to gather valuable sales insights on the company's peformance and to create an interactive dashboard that will provide visual insights on the company's performance. This dashboard will help managers and stakeholders make better informed decisions based on data.
 
 ### Software Used
 - Python (Pandas)
