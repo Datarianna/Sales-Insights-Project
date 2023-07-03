@@ -455,12 +455,14 @@ print(customer_type)
 |Brick & Mortar       |1895     |       1922075  |
 |E-Commerce           |828      |      1374295   |
 
+**Tableau Graph**:
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/5a775260-08f9-4dad-9ca4-4123740e6288) 
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/3acd9d53-dfa3-4125-ab31-fe4c13c4adc8)
+
+
 **Answer**:
 
 
 
 # Tableau Dashboard
-
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/5a775260-08f9-4dad-9ca4-4123740e6288) 
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/3acd9d53-dfa3-4125-ab31-fe4c13c4adc8)
 
