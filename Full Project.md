@@ -425,8 +425,6 @@ print(sales_regions.to_string())
 |South  |  Chennai    |      485083|
 
 **Tableau Graph**:
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7aebd4b5-f90f-477a-9b2d-bf05a1e19323)
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1352b13f-c559-4f6a-8060-9bce58f7f311)
 
 
 
@@ -463,4 +461,6 @@ print(customer_type)
 
 # Tableau Dashboard
 
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/5a775260-08f9-4dad-9ca4-4123740e6288) 
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/3acd9d53-dfa3-4125-ab31-fe4c13c4adc8)
 
