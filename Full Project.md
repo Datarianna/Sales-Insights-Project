@@ -199,7 +199,7 @@ print(c.head())
 c.to_csv('clean_customers.csv', index=False)
 ```
 |customer_code|customer_name |customer_type |
-|-------------|----------==--|-----------=--|
+|-------------|--------------|--------------|
 |    Cus001   |	Surge Stores |Brick & Mortar|
 |    Cus002	  |Nomad Stores	 |Brick & Mortar|
 |    Cus003	  |Excel Stores	 |Brick & Mortar|
