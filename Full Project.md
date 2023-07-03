@@ -49,7 +49,7 @@ The objective of this project is to create a dashboard that provides visual insi
 2. What is the trend of total sales revenue for AtliQ in 2017-2019?
 3. From 2017-2020, which three products sold the most units?
 4. How does the sales revenue vary across different regions in India throughout the years?
-5. What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
+5. What are the top five customers that purchased the most units and made the most revenue in 2019?'
 
 # Data Cleaning
 Before cleaning, I created the functions missing() and duplicate() which checks if the specified dataframe contains any NA or duplicate values.
@@ -401,27 +401,50 @@ print(join_ts_m.head())
 
 Once left joined, I grouped the dataframe by zone and the name of the market, the summed up the total sales amount for each market.
 ```python
-sales_regions = join_ts_m.groupby(['zone','markets_name'])['sales_amount'].sum()
+sales_regions = join_ts_m.groupby(['zone','markets_name'])['norm_sales_amount'].sum()
 print(sales_regions.to_string())
 ```
 |zone|markets_name|-|
 |----|------------|-|
 |Central | Bhopal  |    88388|
-        | Mumbai     |     6539584|
+|        | Mumbai     |     6539584|
 |North  |  Ahmedabad   |    1027488|
-        | Delhi NCR   |    4098717|
-        | Kanpur      |     434883|
-        | Lucknow     |     105333|
+|        | Delhi NCR   |    4220217|
+|        | Kanpur      |     434883|
+|        | Lucknow     |     105333|
 |South  |  Chennai    |      485083|
 
 **Answer**:
 
-### Question 5: What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
-I left joined the Transaction Sales and Products Datasets.
+### Question 5: What are the top five customers that purchased the most units and made the most revenue in 2019?'
+A left join of the Transaction Sales and Customer Datasets is needed, but since a variable has already been made for this join (in Question 1), it will be reused for this question.
 ```python
-join_ts_p = pd.merge(ts, p, on='product_code',how='left')
-print(join_ts_p.head())
+print(join_ts_c.head())
 ```
+|product_code |customer_code| market_code| order_date|  sales_qty | sales_amount |currency|norm_sales_amount|customer_name|customer_type|
+|-------------|-------------|------------|-----------|------------|--------------|--------|-----------------|-------------|-------------|
+| Prod001     | Cus001      |Mark001     | 2017-10-10|     100    |     41241   |   INR      |        41241  |  Surge Stores | Brick & Mortar
+|   Prod002   |    Cus003   |Mark003     | 2018-04-06 |    1      |   875     | INR        |        875  |  Excel Stores | Brick & Mortar
+|  Prod002    |   Cus003    |Mark003     | 2018-04-11 |      1    |   583    |  INR        |        583  |  Excel Stores | Brick & Mortar
+|   Prod002   |   Cus004    |Mark003     | 2018-06-18|     6      | 7176   |   INR        |       7176 | Surface Stores | Brick & Mortar
+|  Prod003    |  Cus005     |Mark004     |2017-11-20  |   59      | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
+
+1. Created a year filter that only includes rows that have an order date within 2019.
+2. Grouped the filtered dataframe by customers, then summed the sales quantity and sales amount. Ranked the top five customers based on highest sales quantity and highest sales amount.
+```python
+year_filter = join_ts_c[(join_ts_c['order_date'] >= '2019-01-01') & (join_ts_c['order_date'] <= '2019-12-31')]
+top_customers = year_filter.groupby('customer_name')[['sales_qty','norm_sales_amount']].sum().nlargest(5,['sales_qty','norm_sales_amount'])
+print(top_customers)
+```
+|    customer_name    |sales_qty|norm_sales_amount|
+|---------------------|---------|-----------------|
+|Electricalsara Stores|   776   |     917920      |
+|Info Stores          |   736   |     347682      |
+|Modular              |   339   |     286334      |
+|Electricalslytical   |   286   |     629237      |
+|Logic Stores         |   270   |     525379      |
+
+**Answer**:
 
 # Tableau Dashboard
 
