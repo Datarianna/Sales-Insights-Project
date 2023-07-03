@@ -313,6 +313,7 @@ print(top_five_customers)
 Name: norm_sales_amount, dtype: int64
 
 **Tableau Graph**:
+
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/fd061071-7035-46b2-a0a6-a657005f8c22)
 
 **Answer**: 
@@ -334,6 +335,7 @@ print(total_rev_years)
 Name: norm_sales_amount, dtype: int64
 
 **Tableau Graph**:
+
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/e0f6db0c-e87d-4848-a4e8-41ee0d35d166)
 
 **Answer**:
@@ -387,6 +389,7 @@ Prod011   |  4
 Name: sales_qty, dtype: int64
 
 **Tableau Graph**:
+
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7468ed78-5da7-49e7-a544-ef28f64b9ecd)
 
 
@@ -422,8 +425,8 @@ print(sales_regions.to_string())
 |South  |  Chennai    |      485083|
 
 **Tableau Graph**:
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/138f2ca5-eecf-468e-a7e0-80d0dfa31609)
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1b07b7e7-cb4b-4745-b142-6fb2b6043a4a)
+
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/138f2ca5-eecf-468e-a7e0-80d0dfa31609) ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1b07b7e7-cb4b-4745-b142-6fb2b6043a4a)
 
 **Answer**:
 
@@ -453,6 +456,7 @@ print(customer_type)
 |E-Commerce           |828      |      1374295   |
 
 **Tableau Graph**:
+
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/5a775260-08f9-4dad-9ca4-4123740e6288) 
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/3acd9d53-dfa3-4125-ab31-fe4c13c4adc8)
 
