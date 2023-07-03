@@ -422,8 +422,8 @@ print(sales_regions.to_string())
 |South  |  Chennai    |      485083|
 
 **Tableau Graph**:
-
-
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/138f2ca5-eecf-468e-a7e0-80d0dfa31609)
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1b07b7e7-cb4b-4745-b142-6fb2b6043a4a)
 
 **Answer**:
 
