@@ -52,11 +52,25 @@ The objective of this project is to create a dashboard that provides visual insi
 5. What are the top three products in terms of sales quantity for Brick & Mortar and E-Commerce customers?
 
 # Data Cleaning
+Before cleaning, I created the functions missing() and duplicate() which checks if the specified dataframe contains any NA or duplicate values.
+```python
+def missing(df):
+  missing = df.isna().any().any()
+  if missing:
+    print('Missing values detected')
+  else:
+    print('No missing values')
+
+def duplicate(df):
+  duplicate = df.duplicated().any().any()
+  if duplicate:
+    print('Duplicate values present')
+  else:
+    print('No duplicate values')
+```
 ### 💲 Cleaning Transaction Sales Dataset
 
 ```python
-print('- - - - - Transaction Sales - - - - -')
-print('\nOriginal Dataset:')
 ts = pd.read_csv('transaction_sales.csv')
 print(ts.head())
 ```
@@ -67,13 +81,10 @@ print(ts.head())
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |      875     |	  INR   |
 |    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   |
 |    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   |
-
-
-1. I first utilized .dropna() to remove any rows that contained null values. Examining the dataset
-2. I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
-3. Examining the data, there are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were removed.
-4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which converts any sales amount in USD to INR.
-5. Converted all values under the order_date into a date format.
+1. I first utilized .dropna() to remove any rows that contained null values. Examining the dataset, I have identified some rows that had a -1 and 0 under the ‘sales_amount’ column, so I removed those rows from the dataset.
+3. There are only two currencies presented in the ‘currency’ column: INR and USD. Many of the rows in this column had an ‘\r’ at the end (ex. INR\r instead of INR), so they were replaced with a proper format.
+4. Since some transactions were in USD, I created a new column called ‘norm_sales_amount’ which contains USD sales amounts converted to INR.
+5. Converted all values under the order_date into a date format to ensure the correct data type.
 6. Checked the dataset for anymore missing values before putting the new cleaned dataset into a new .csv file.
 ```python
 ts = ts.dropna()
@@ -83,33 +94,26 @@ ts['norm_sales_amount'] = ts['sales_amount']
 ts.loc[ts['currency'] == 'USD','norm_sales_amount'] = ts.loc[ts['currency'] == 'USD','sales_amount']*82
 ts['order_date'] = pd.to_datetime(ts['order_date'], dayfirst=False)
 
-print('')
 duplicate(ts)
 missing(ts)
 
-print('\nCleaned Dataset:')
 print(ts.head())
 ts.to_csv('clean_transaction_sales.csv', index=False)
 ```
 | product_code | customer_code | market_code | order_date | sales_qty | sales_amount | currency | norm_sales_amount |
 |--------------|---------------|-------------|------------|-----------|--------------|----------|-------------------|
-|    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   | 41241 |
-|    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |     875      |	  INR   | 875 |
-|    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   | 583 |
-|    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   | 7176
-|    Prod003   |    Cus005     |	 Mark004   | 2017-11-20 |	   59     |      500     |	  USD   | 41000 |
+|    Prod001   |    Cus001     |	 Mark001   | 2017-10-10 |	   100    |     41241    |	  INR   |       4124        |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-06 |	   1      |     875      |	  INR   |        875        |
+|    Prod002   |    Cus003     |	 Mark003   | 2018-04-11 |	   1      |      583     |	  INR   |        583        |
+|    Prod002   |    Cus004     |	 Mark003   | 2018-06-18 |	   6      |      7176    |	  INR   |       7176        |       
+|    Prod003   |    Cus005     |	 Mark004   | 2017-11-20 |	   59     |      500     |	  USD   |      41000        |    
 
 ### 🌍 Cleaning Markets Dataset
 ```python
-print('\n- - - - - Market - - - - -')
-print('\nOriginal Dataset:')
 m = pd.read_csv('markets.csv')
-print('Top 5 rows')
 print(m.head())
-print('Bottom 5 rows')
 print(m.tail())
 ```
-
 Top 5 rows
 | markets_code | markets_name | zone |
 |--------------|--------------|------|
