@@ -49,7 +49,7 @@ The objective of this project is to create a dashboard that provides visual insi
 2. What is the trend of total sales revenue for AtliQ in 2017-2019?
 3. From 2017-2020, which three products sold the most units?
 4. How does the sales revenue vary across different regions in India throughout the years?
-5. What are the top five customers that purchased the most units and made the most revenue in 2019?'
+5. What is the total sales revenue and total number of units sold for each customer type in 2019?
 
 # Data Cleaning
 Before cleaning, I created the functions missing() and duplicate() which checks if the specified dataframe contains any NA or duplicate values.
@@ -416,7 +416,7 @@ print(sales_regions.to_string())
 
 **Answer**:
 
-### Question 5: What are the top five customers that purchased the most units and made the most revenue in 2019?'
+### Question 5: What is the total sales revenue and total number of units sold for each customer type in 2019?
 A left join of the Transaction Sales and Customer Datasets is needed, but since a variable has already been made for this join (in Question 1), it will be reused for this question.
 ```python
 print(join_ts_c.head())
@@ -430,19 +430,16 @@ print(join_ts_c.head())
 |  Prod003    |  Cus005     |Mark004     |2017-11-20  |   59      | 500    |  USD          |    41000 | Premium Stores | Brick & Mortar
 
 1. Created a year filter that only includes rows that have an order date within 2019.
-2. Grouped the filtered dataframe by customers, then summed the sales quantity and sales amount. Ranked the top five customers based on highest sales quantity and highest sales amount.
+2. Grouped the filtered dataframe by customer_type, then summed the sales quantity and sales amount.
 ```python
 year_filter = join_ts_c[(join_ts_c['order_date'] >= '2019-01-01') & (join_ts_c['order_date'] <= '2019-12-31')]
-top_customers = year_filter.groupby('customer_name')[['sales_qty','norm_sales_amount']].sum().nlargest(5,['sales_qty','norm_sales_amount'])
-print(top_customers)
+customer_type = year_filter.groupby('customer_type')[['sales_qty','norm_sales_amount']].sum()
+print(customer_type)
 ```
-|    customer_name    |sales_qty|norm_sales_amount|
+|    customer_type    |sales_qty|norm_sales_amount|
 |---------------------|---------|-----------------|
-|Electricalsara Stores|   776   |     917920      |
-|Info Stores          |   736   |     347682      |
-|Modular              |   339   |     286334      |
-|Electricalslytical   |   286   |     629237      |
-|Logic Stores         |   270   |     525379      |
+|Brick & Mortar       |1895     |       1922075  |
+|E-Commerce           |828      |      1374295   |
 
 **Answer**:
 
