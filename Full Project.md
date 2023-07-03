@@ -398,6 +398,7 @@ print(join_ts_m.head())
 |      Prod002    |    Cus003   |  Mark003 |2018-04-11     |     1      |     583    |  INR          |      583|Ahmedabad|  North|
 |      Prod002    |    Cus004  |   Mark003 |2018-06-18     |     6     |     7176   |   INR      |         7176 |   Ahmedabad|North|
 |      Prod003    |    Cus005  |   Mark004 |2017-11-20    |     59     |      500   |   USD    |          41000 |   Delhi NCR | North|
+
 Once left joined, I grouped the dataframe by zone and the name of the market, the summed up the total sales amount for each market.
 ```python
 sales_regions = join_ts_m.groupby(['zone','markets_name'])['sales_amount'].sum()
