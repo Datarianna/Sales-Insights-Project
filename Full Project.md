@@ -319,7 +319,7 @@ Name: norm_sales_amount, dtype: int64
 
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/fd061071-7035-46b2-a0a6-a657005f8c22)
 
-**Answer**: In 2019, Electricalsara Stores spent the most money on AtliQ hardware products totaling ₹917,920 (~$11,199). The second highest spending company is Electricalslytical with a spending amount of ₹629,237 (~$7,677). The third highest spender in 2019 was Logic Stores with a total of ₹525,379 (~$6,410). The fourth highest spender is Path, with a spending amount of ₹454822 (~$5,549). The fifth and last highest spender is Info Stores, totaling ₹347,682 (~$4,242)
+**Answer**: In 2019, Electricalsara Stores spent the most money on AtliQ hardware products totaling ₹917,920 ($11,199). The second highest spending company is Electricalslytical with a spending amount of ₹629,237 ($7,677). The third highest spender in 2019 was Logic Stores with a total of ₹525,379 ($6,410). The fourth highest spender is Path, with a spending amount of ₹454822 ($5,549). The fifth and last highest spender is Info Stores, totaling ₹347,682 ($4,242)
 
 ### Question 2: What is the trend of total sales revenue for AtliQ in 2017-2019?
 1. Created a filter that filters in rows that are within the years 2017-2019.
@@ -341,7 +341,7 @@ Name: norm_sales_amount, dtype: int64
 
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/e0f6db0c-e87d-4848-a4e8-41ee0d35d166)
 
-**Answer**: In 2017 during the early stages of AtliQ, they made ₹1,895,109 (~$23,122) as their first, initial revenue. Then, in 2018, AtliQ experience a huge 305.648% increase in revenue, totaling a revenue of ₹7,687,469 (~$93,794). This may be due to the fact that they have established strong business strategies that have allowed their revenue to grow tremendously. However, the frequency of sales decreased dramatically and the total revenue in 2019 plummeted by 57.1202% with a revenue of ₹3,296,370 (~$40219). There are several possibilities whyy this could be the case such as that the strategies used in 2018 may no longer working due to increased competitors and their ability to mimic their strategies. It could also be due to economic factors out of the company's control, customer buying power changing, problems in business operations, etc.
+**Answer**: In 2017 during the early stages of AtliQ, they made ₹1,895,109 ($23,122) as their first, initial revenue. Then, in 2018, AtliQ experience a huge 305.648% increase in revenue, totaling a revenue of ₹7,687,469 ($93,794). This may be due to the fact that they have established strong business strategies that have allowed their revenue to grow tremendously. However, the frequency of sales decreased dramatically and the total revenue in 2019 plummeted by 57.1202% with a revenue of ₹3,296,370 ($40219). There are several possibilities whyy this could be the case such as that the strategies used in 2018 may no longer working due to increased competitors and their ability to mimic their strategies. It could also be due to economic factors out of the company's control, customer buying power changing, problems in business operations, etc.
 
 ### Question 3: From 2017-2020, which three products sold the most units?
 1. Created a filter that filters in rows thar are within 2017-2020.
@@ -396,7 +396,7 @@ Name: sales_qty, dtype: int64
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7468ed78-5da7-49e7-a544-ef28f64b9ecd)
 
 
-**Answer**: 
+**Answer**: In 2017, the most popular products sold from AtliQ is Prod003, Prod013, and Prod001. 
 
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
 I first left joined the Transaction Sales and Market Datasets.
