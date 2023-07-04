@@ -447,7 +447,8 @@ print(sales_regions.to_string())
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/86b40ad0-e702-4aff-abaa-fc9fe1547012)
 
 
-**Answer**:
+**Answer**: In 2017 during AtliQ's beginnings, their products were sold in Delhi, Mumbai, Chennai, and Kanpur, with Delhi being the city that has brought AtliQ the most revenue. In 2018 when the business grew tremendously, their products were sold to new cities like Ahmedabad, Lucknow, and Bhopal. However, in 2019 their market decreased and they only sold products to Mumbai, Delhi, Kanpur, and Ahmedabad. In the graphs, it is seen that Delhi, Mumbai, and Kanpur have remained as the cities that have consistently purchased from AtliQ throughout the years with Mumbai and Delhi purchasing significant amounts each year.
+As for zones, most of their sales are cncentrated in the north and central regions of India. In 2017, more than half of the sales revenue made came from the northern region of India, and the south and central regions made less than a quarter each of sales revenue. 2018 showed significant changes in regional sales, where the central region generated more than half of the sales revenue and the north generated roughly half of the sales revenue. The southern region generated a very tiny portion of revenue, which would suggest that AtliQ has shifted the distribution of their products away from the southern region and into the north and central regions since that may be where most of their customer base is. Lastly, in 2019, the north and south regions made roughly half the sales revenue each.
 
 ### Question 5: What is the total sales revenue and total number of units sold for each customer type in 2019?
 A left join of the Transaction Sales and Customer Datasets is needed, but since a variable has already been made for this join (in Question 1), it will be reused for this question.
