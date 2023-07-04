@@ -444,6 +444,7 @@ print(sales_regions.to_string())
 **Tableau Graph**:
 
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/c6e87baf-5931-42e5-a6da-c4a564a399a6)
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/86b40ad0-e702-4aff-abaa-fc9fe1547012)
 
 
 **Answer**:
