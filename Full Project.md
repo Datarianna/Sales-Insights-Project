@@ -418,7 +418,8 @@ Once left joined, I grouped the dataframe by zone and the name of the market, th
 sales_regions = join_ts_m.groupby(['year','zone','markets_name'])['norm_sales_amount'].sum()
 print(sales_regions.to_string())
 ```
-|year | zone  |   markets_name |
+
+|year | zone  |   markets_name | -|
 |-|-|-|
 2017 | Central | Mumbai      |     430502|
      | North   | Delhi NCR   |    1092377|
@@ -437,6 +438,7 @@ print(sales_regions.to_string())
      |         | Kanpur      |     286334|
 2020 | Central | Mumbai      |       3084|
      | North   | Delhi NCR   |      18944|
+
 
 **Tableau Graph**:
 
