@@ -147,10 +147,11 @@ for year in year_filter['order_date'].dt.year.unique():
 ### QUESTION 4 ###
 print('\n[Q4] How does the sales revenue vary across different regions in India throughout the years?')
 join_ts_m = pd.merge(ts, m, on='market_code', how='left')
+join_ts_m['year'] = pd.to_datetime(join_ts_m['order_date']).dt.year
 print(join_ts_m.head())
 
 print('')
-sales_regions = join_ts_m.groupby(['zone','markets_name'])['norm_sales_amount'].sum()
+sales_regions = join_ts_m.groupby(['year','zone','markets_name'])['norm_sales_amount'].sum()
 print(sales_regions.to_string())
 
 ### QUESTION 5 ###
@@ -161,4 +162,3 @@ print('')
 year_filter = join_ts_c[(join_ts_c['order_date'] >= '2019-01-01') & (join_ts_c['order_date'] <= '2019-12-31')]
 customer_type = year_filter.groupby('customer_type')[['sales_qty','norm_sales_amount']].sum()
 print(customer_type)
-
