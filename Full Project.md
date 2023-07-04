@@ -3,18 +3,18 @@
 # About
 AtliQ Hardware is a technology company based in India and was established in 2017. The company sells various types of computer hardware and devices to several companies throughout India and the United States.
 
-### Problem
+## Problem
 Atliq has an issue where they are unable to track sales accurately and gather proper insight of their performances. Their data is solely stored in spreadsheets, which can be difficult to properly see their business performance. They rely on managers to give them verbal reports on how the business is doing, which can be problematic because they may tend to make it seem like the company is doing better than it really is.
 
-### Objective
+## Objective
 The objective of this project is to gather valuable sales insights on the company's peformance and to create an interactive dashboard that will provide visual insights on the company's performance. This dashboard will help managers and stakeholders make better informed decisions based on data.
 
-### Software Used
+## Software Used
 - Python (Pandas) for data cleaning and manipulation
 - Tableau for visualizations and the dashboard
 
 ## Datasets and Data Description
-**💲 Transaction Sales Dataset**
+### 💲 Transaction Sales Dataset
 - **product_code** *(text)*: Unique identifier for each product.
 - **customer_code** *(text)*: Unique identifier for each customer.
 - **market_code** *(text)*: Unique identifier for each market.
@@ -23,21 +23,21 @@ The objective of this project is to gather valuable sales insights on the compan
 - **sales_amount** *(num)*: total sales of the transaction.
 - **currency** *(text)*: currency used for the transaction.
 
-**🌍 Markets Dataset**
+### 🌍 Markets Dataset
 - **markets_code** *(text)*: Unique identifier for each market.
 - **markets_name** *(text)*: Region name of the market.
 - **zone** *(text)*: location of the region (North, South, Central)
 
-**🧑 Customers Dataset**
+### 🧑 Customers Dataset
 - **customer_code** *(text)*: Unique identifier for each customer.
 - **custmer_name** *(text)*: Name of the customer.
 - **customer_type** *(text)*: Indicates whether the customer is a Brick & Mortar or E-Commerce store.
 
-**🖱️ Products Dataset**
+### 🖱️ Products Dataset
 - **product_code** *(text)*: Unique identifier for each product.
 - **product_type** *(text)*: Indicates whether the product in the store is an AtliQ Brand or distributed by another company.
 
-**🗓️ Sales Years Dataset**
+### 🗓️ Sales Years Dataset
 - **date** *(date)*: Date of the transaction.
 - **cy_date** *(date)*: The date of the transaction, set to the first day of the month of transaction.
 - **year** *(date)*: The year the transaction was made.
