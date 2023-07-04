@@ -481,7 +481,7 @@ print(customer_type)
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/3acd9d53-dfa3-4125-ab31-fe4c13c4adc8)
 
 
-**Answer**:
+**Answer**: Overall, Brick and Mortar customers have brought the most revenue and bought the most units from AtliQ in 2019 compared to E-Commerce stores. This makes sense since brick and mortar stores tend to need a significant amount of hardware to operate a physical store unlike than E-Commerce stores.
 
 
 
