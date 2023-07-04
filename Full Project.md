@@ -419,8 +419,8 @@ sales_regions = join_ts_m.groupby(['year','zone','markets_name'])['norm_sales_am
 print(sales_regions.to_string())
 ```
 
-|year | zone  |   markets_name | -|
-|-|-|-|
+|year | zone  |   markets_name |norm_sales_amount
+|-|-|-|-
 2017 | Central | Mumbai      |     430502|
      | North   | Delhi NCR   |    1092377|
      |         | Kanpur      |       2628|
