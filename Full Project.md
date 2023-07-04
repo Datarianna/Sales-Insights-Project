@@ -10,8 +10,8 @@ Atliq has an issue where they are unable to track sales accurately and gather pr
 The objective of this project is to gather valuable sales insights on the company's peformance and to create an interactive dashboard that will provide visual insights on the company's performance. This dashboard will help managers and stakeholders make better informed decisions based on data.
 
 ### Software Used
-- Python (Pandas)
-- Tableau
+- Python (Pandas) for data cleaning and manipulation
+- Tableau for visualizations and the dashboard
 
 ## Datasets and Data Description
 **💲 Transaction Sales Dataset**
@@ -399,33 +399,44 @@ Name: sales_qty, dtype: int64
 **Answer**: In 2017, the most popular products sold from AtliQ were Prod003, Prod013, and Prod001. In 2018, the most popular products were Prod005, Prod018, Prod016, and Prod013. 2019 had Prod005, Prod016, and Prod018 as the highest sold products. Lastly, 2020 had Prod005 and Prod011 as their highest selling products. Seen in the table and the graph, Prod013, Prod018, and Prod018 remain as AtliQ's most popular products since they were consistently the most popular products sold for more than a year. There is a noticeable shift in top products from 2018-2020 as less customers purchased less Prod016 and Prod018 in 2019 than they did in 2018, while Prod005 outsold both of them in 2019. This would suggest some shift in the market demand for products.
 
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
-I first left joined the Transaction Sales and Market Datasets.
+I first left joined the Transaction Sales and Market Datasets, then created a 'year' column that has all years of the transactions extracted from the 'oter_date' column. This is important for grouping the data by year later on.
 ```python
 join_ts_m = pd.merge(ts, m, on='market_code', how='left')
+join_ts_m['year'] = pd.to_datetime(join_ts_m['order_date']).dt.year
 print(join_ts_m.head())
 ```
-|product_code| customer_code| market_code| order_date | sales_qty | sales_amount | currency | norm_sales_amount | markets_name | zone |
-|-|-|-|-|-|-|-|-|-|-|
-|   Prod001  |   Cus001     |  Mark001   | 2017-10-10 |    100    |     41241    |  INR     |         41241     | Chennai      | South |
-|      Prod002|Cus003  |   Mark003| 2018-04-06   |       1|875   |   INR     |           875  |  Ahmedabad | North|
-|      Prod002    |    Cus003   |  Mark003 |2018-04-11     |     1      |     583    |  INR          |      583|Ahmedabad|  North|
-|      Prod002    |    Cus004  |   Mark003 |2018-06-18     |     6     |     7176   |   INR      |         7176 |   Ahmedabad|North|
-|      Prod003    |    Cus005  |   Mark004 |2017-11-20    |     59     |      500   |   USD    |          41000 |   Delhi NCR | North|
+|product_code| customer_code| market_code| order_date | sales_qty | sales_amount | currency | norm_sales_amount | markets_name | zone | year|
+|-|-|-|-|-|-|-|-|-|-|-|
+|   Prod001  |   Cus001     |  Mark001   | 2017-10-10 |    100    |     41241    |  INR     |         41241     | Chennai      | South |2017
+|      Prod002|Cus003  |   Mark003| 2018-04-06   |       1|875   |   INR     |           875  |  Ahmedabad | North|2018
+|      Prod002    |    Cus003   |  Mark003 |2018-04-11     |     1      |     583    |  INR          |      583|Ahmedabad|  North|2018
+|      Prod002    |    Cus004  |   Mark003 |2018-06-18     |     6     |     7176   |   INR      |         7176 |   Ahmedabad|North|2018
+|      Prod003    |    Cus005  |   Mark004 |2017-11-20    |     59     |      500   |   USD    |          41000 |   Delhi NCR | North|2017
 
 Once left joined, I grouped the dataframe by zone and the name of the market, the summed up the total sales amount for each market.
 ```python
-sales_regions = join_ts_m.groupby(['zone','markets_name'])['norm_sales_amount'].sum()
+sales_regions = join_ts_m.groupby(['year','zone','markets_name'])['norm_sales_amount'].sum()
 print(sales_regions.to_string())
 ```
-|zone|markets_name|-|
-|----|------------|-|
-|Central | Bhopal  |    88388|
-|        | Mumbai     |     6539584|
-|North  |  Ahmedabad   |    1027488|
-|        | Delhi NCR   |    4220217|
-|        | Kanpur      |     434883|
-|        | Lucknow     |     105333|
-|South  |  Chennai    |      485083|
+|year | zone  |   markets_name |
+|-|-|-|
+2017 | Central | Mumbai      |     430502|
+     | North   | Delhi NCR   |    1092377|
+     |         | Kanpur      |       2628|
+     | South   | Chennai     |     369602|
+2018 | Central | Bhopal      |      88388|
+     |         | Mumbai      |    4492658|
+     | North   | Ahmedabad   |     896700|
+     |         | Delhi NCR   |    1842988|
+     |         | Kanpur      |     145921|
+     |         | Lucknow     |     105333|
+     | South   | Chennai     |     115481|
+2019 | Central | Mumbai      |    1613340|
+     | North   | Ahmedabad   |     130788|
+     |         | Delhi NCR   |    1265908|
+     |         | Kanpur      |     286334|
+2020 | Central | Mumbai      |       3084|
+     | North   | Delhi NCR   |      18944|
 
 **Tableau Graph**:
 
@@ -469,4 +480,6 @@ print(customer_type)
 
 
 # Tableau Dashboard
+Link: https://public.tableau.com/app/profile/arianna.jara/viz/SalesInsightsAnalytics/Dashboard1?publish=yes
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/83ec6a65-3a83-47d6-81f9-e2d561f7cd45)
 
