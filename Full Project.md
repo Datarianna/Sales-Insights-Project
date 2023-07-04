@@ -419,30 +419,32 @@ sales_regions = join_ts_m.groupby(['year','zone','markets_name'])['norm_sales_am
 print(sales_regions.to_string())
 ```
 
-|year | zone  |   markets_name |norm_sales_amount
-|-|-|-|-
-2017 | Central | Mumbai      |     430502|
-     | North   | Delhi NCR   |    1092377|
-     |         | Kanpur      |       2628|
-     | South   | Chennai     |     369602|
-2018 | Central | Bhopal      |      88388|
-     |         | Mumbai      |    4492658|
-     | North   | Ahmedabad   |     896700|
-     |         | Delhi NCR   |    1842988|
-     |         | Kanpur      |     145921|
-     |         | Lucknow     |     105333|
-     | South   | Chennai     |     115481|
-2019 | Central | Mumbai      |    1613340|
-     | North   | Ahmedabad   |     130788|
-     |         | Delhi NCR   |    1265908|
-     |         | Kanpur      |     286334|
-2020 | Central | Mumbai      |       3084|
-     | North   | Delhi NCR   |      18944|
+
+|year| zone  |markets_name |norm_sales_amount|
+|----|-------|-------------|-----------------|
+|2017 |Central| Mumbai      |     430502      |
+|     |North  | Delhi NCR   |    1092377      |
+|     |       | Kanpur      |       2628      |
+|     |South  | Chennai     |     369602      |
+|2018 |Central| Bhopal      |      88388      |
+|     |       | Mumbai      |    4492658      |
+|     |North  | Ahmedabad   |     896700      |
+|     |       | Delhi NCR   |    1842988      |
+|     |       | Kanpur      |     145921      |
+|     |       | Lucknow     |     105333      |
+|     | South | Chennai     |     115481      |
+|2019 |Central| Mumbai      |    1613340      |
+|     |North  | Ahmedabad   |     130788      |
+|     |       | Delhi NCR   |    1265908      |
+|     |       | Kanpur      |     286334      |
+|2020 |Central| Mumbai      |       3084      |
+|     |North  | Delhi NCR   |      18944      |
 
 
 **Tableau Graph**:
 
-![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/138f2ca5-eecf-468e-a7e0-80d0dfa31609) ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/1b07b7e7-cb4b-4745-b142-6fb2b6043a4a)
+![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/c6e87baf-5931-42e5-a6da-c4a564a399a6)
+
 
 **Answer**:
 
