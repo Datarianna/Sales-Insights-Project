@@ -396,7 +396,7 @@ Name: sales_qty, dtype: int64
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/7468ed78-5da7-49e7-a544-ef28f64b9ecd)
 
 
-**Answer**: In 2017, the most popular products sold from AtliQ is Prod003, Prod013, and Prod001. 
+**Answer**: In 2017, the most popular products sold from AtliQ were Prod003, Prod013, and Prod001. In 2018, the most popular products were Prod005, Prod018, Prod016, and Prod013. 2019 had Prod005, Prod016, and Prod018 as the highest sold products. Lastly, 2020 had Prod005 and Prod011 as their highest selling products. Seen in the table and the graph, Prod013, Prod018, and Prod018 remain as AtliQ's most popular products since they were consistently the most popular products sold for more than a year. There is a noticeable shift in top products from 2018-2020 as less customers purchased less Prod016 and Prod018 in 2019 than they did in 2018, while Prod005 outsold both of them in 2019. This would suggest some shift in the market demand for products.
 
 ### Question 4: How does the sales revenue vary across different regions in India throughout the years?
 I first left joined the Transaction Sales and Market Datasets.
