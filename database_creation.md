@@ -58,6 +58,7 @@ VALUES ('Prod001','Own Brand'),
 ```
 
 ### Transaction Sales
+```sql
 CREATE TABLE transaction_sales (
   product_code VARCHAR(50),
   customer_code VARCHAR(50),
