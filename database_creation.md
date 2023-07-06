@@ -81,6 +81,7 @@ INSERT INTO transaction_sales VALUES
 ```
 
 ### Sales Years
+```sql
 CREATE TABLE sales_years (
   order_date DATE,
   year INT,
