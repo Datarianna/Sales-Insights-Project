@@ -283,7 +283,8 @@ sy.to_csv('clean_sales_years.csv', index=False)
 ![image](https://github.com/Datarianna/Sales-Insights-Project/assets/138058039/10222a20-f42a-4ff8-a1a4-8c0ac69d3e3e)
 
 # Querying Results and Analysis
-Before starting the analysis, I created a database and imported all of the clean datasets into MySQL. All of the code will be shown in the sql file.
+Before starting the analysis, I created a database and imported all of the clean datasets into MySQL. All of the code will be shown in this file:
+https://github.com/Datarianna/Sales-Insights-Project/blob/main/database_creation.md
 ### Question 1: Who are the top five customers for AtliQ in 2019 based on total sales revenue?
 I first created a left join between the Transaction Sales (left) and Customer (right) Datasets.
 ```python
